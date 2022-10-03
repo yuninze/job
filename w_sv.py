@@ -1,7 +1,6 @@
 import os
 import csv
 import requests
-import threading
 import concurrent.futures
 import numpy as np
 from time import time
@@ -20,7 +19,7 @@ def dn(v):
         f'-multiple_requests 0 -reconnect_at_eof 1 ' 
         f'-reconnect_streamed 1 -reconnect_on_network_error 1 ' 
         f'-bsf:a aac_adtstoasc -c copy '
-        f'"d:/rslt/{v[2]}_{v[0]}.mp4"')
+        f'"c:/{v[2]}_{v[0]}.mp4"')
 
 def visit(url,idx):
     url=f"{url}{idx}"
@@ -64,12 +63,12 @@ def exec(url,mx,mn,max_workers=200):
                     #idx+reason
                     ngs.append((rslt[1],rslt[2]))
                     print(f"ng: {q} ({rslt[2]})")
-    with open("d:/rslt.csv","w",encoding="utf-8",newline="") as csvfile:
-        (csv.writer(csvfile)).writerows(ngs)
+    with open("c:/rslt.csv","w",encoding="utf-8",newline="") as csvfile:
+        csv.writer(csvfile).writerows(ngs)
     print(f"completed in {time()-t0:.2f}s")
     return oks,ngs
 
-def sanitize(oks=None,path="d:/rslt/"):
+def sanitize(oks=None,path="c:/"):
     q=[q.name for q in os.scandir(path) 
         if q.is_file and q.name.endswith(".mp4") and q.stat().st_size==0]
     print(f"zero-sized files: {len(q)}")
@@ -81,22 +80,3 @@ def sanitize(oks=None,path="d:/rslt/"):
         for filename in q:
             os.remove(path+filename)
         return q
-
-def mt(mx,mn):
-    threads=[]
-    for y in range(mx,mn,-1):
-        thread=threading.Thread(target=visit,args=[y])
-        thread.daemon=True
-        thread.start()
-        threads.append(thread)
-    for thread in threads:
-        thread.join()
-
-def prof(q):
-    import cProfile
-    import pstats
-    with cProfile.Profile() as p:
-        exec(q[0],q[1],q[2])
-    stats=pstats.Stats(p)
-    stats.sort_stats(pstats.SortKey.TIME)
-    stats.print_stats()

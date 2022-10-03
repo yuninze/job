@@ -32,9 +32,7 @@ def lighting_text(
                     pp.loc[q[1],"SENTENCE_EN"]=(
                     pp.loc[q[1],"SENTENCE_EN"]
                     .replace(engWord,
-                        f'''<span style="
-                        font-weight:bold;
-                        color:#FE0000">{engWord}</span>'''))
+                        f'''<span style="font-weight:bold;color:#FE0000">{engWord}</span>'''))
                 pp.to_csv("patentpia.csv",encoding=encoding)
                 return None
             raise NameError("unmatching word in the content")
