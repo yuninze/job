@@ -6,7 +6,7 @@ import scipy.cluster.hierarchy as sch
 from time import time as t
 from typing import Iterable
 from sklearn.preprocessing import normalize
-# from sklearn.cluster import KMeans,AgglomerativeClustering
+from sklearn.cluster import KMeans,AgglomerativeClustering
 
 plt.rcParams["font.family"]="monospace"
 rg=np.random.default_rng(94056485)
@@ -142,26 +142,26 @@ def dngram(q):
     '''draw dendrogram from scipy linkage array'''
     return sch.dendrogram(sch.linkage(q,method="ward"))
 
-# costco0=pd.read_csv("c:/code/costco.csv").iloc[:,2:]
-# costco0.index.name="clientidx"
-# costco1=pd.DataFrame(
-#     normalize(costco0),columns=costco0.columns)
+costco0=pd.read_csv("c:/code/costco.csv").iloc[:,2:]
+costco0.index.name="clientidx"
+costco1=pd.DataFrame(
+    normalize(costco0),columns=costco0.columns)
 
-# plt.figure(figsize=(12,12))
-# plt.subplot(311)
-# gram=dngram(costco1)
-# plt.title("sch.linkage dendrogram")
+plt.figure(figsize=(12,12))
+plt.subplot(311)
+gram=dngram(costco1)
+plt.title("sch.linkage dendrogram")
 
-# csc_ac=AgglomerativeClustering(
-#     n_clusters=2,affinity="euclidean",linkage="ward"
-#     ).fit_predict(costco1)
-# plt.subplot(312)
-# plt.scatter(costco1.Milk,costco1.Fresh,c=csc_ac)
-# plt.title("AC Milk:Fresh")
+csc_ac=AgglomerativeClustering(
+    n_clusters=2,affinity="euclidean",linkage="ward"
+    ).fit_predict(costco1)
+plt.subplot(312)
+plt.scatter(costco1.Milk,costco1.Fresh,c=csc_ac)
+plt.title("AC Milk:Fresh")
 
-# csc_km=KMeans(
-#     n_clusters=2,random_state=94056485
-#     ).fit_predict(costco1)
-# plt.subplot(313)
-# plt.scatter(costco1.Milk,costco1.Fresh,c=csc_km)
-# plt.title("KMeans Milk:Fresh")
+csc_km=KMeans(
+    n_clusters=2,random_state=94056485
+    ).fit_predict(costco1)
+plt.subplot(313)
+plt.scatter(costco1.Milk,costco1.Fresh,c=csc_km)
+plt.title("KMeans Milk:Fresh")
