@@ -2,8 +2,6 @@ import os
 import csv
 import requests
 import concurrent.futures
-import numpy as np
-from time import time
 from bs4 import BeautifulSoup as bs
 
 ua={"user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) "\
@@ -37,13 +35,12 @@ def visit(url,idx):
         return False,url,ng
 
 def exec(url,mx,mn,max_workers=200):
-    t0=time()
     oks,ngs=[],[]
     #with with statement shutdown method is not needed
     with concurrent.futures.ThreadPoolExecutor(
         max_workers=max_workers) as te:
         #submit future objects
-        works={te.submit(visit,url,q):q for q in np.arange(mn,mx,1)}
+        works={te.submit(visit,url,q):q for q in range(mn,mx,1)}
         #result collection: as_completed
         for work in concurrent.futures.as_completed(works):
             #get index by future
@@ -65,7 +62,7 @@ def exec(url,mx,mn,max_workers=200):
                     print(f"ng: {q} ({rslt[2]})")
     with open("c:/rslt.csv","w",encoding="utf-8",newline="") as csvfile:
         csv.writer(csvfile).writerows(ngs)
-    print(f"completed in {time()-t0:.2f}s")
+    print(f"......done")
     return oks,ngs
 
 def sanitize(oks=None,path="c:/"):
