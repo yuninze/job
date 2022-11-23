@@ -34,7 +34,7 @@ def visit(url,idx):
     except Exception as ng:
         return False,url,ng
 
-def exec(url,mx,mn,max_workers=200):
+def exec(url,mx,mn,max_workers=36):
     oks,ngs=[],[]
     #with with statement shutdown method is not needed
     with concurrent.futures.ThreadPoolExecutor(
@@ -51,7 +51,6 @@ def exec(url,mx,mn,max_workers=200):
             except TimeoutError as ng:
                 #idx+reason
                 ngs.append((q,ng))
-                te.shutdown(wait=True,cancel_futures=False)
             else:
                 if rslt[0] is True:
                     oks.append(rslt[1])
