@@ -1,5 +1,6 @@
 from time import time
 from datetime import datetime
+from random import random
 
 class t:
     def __init__(self):
@@ -13,3 +14,6 @@ class t:
         t0=self.t0
         t1=time()
         return round((t1-t0)/60,1)
+
+def friday():
+    return random.choice(("맥 도널드","케이 에프 시","버거 킹","노 브랜드",""))
