@@ -5,10 +5,10 @@ class t:
     def __init__(self):
         self.t0_datetime=datetime.now().strftime("%Y-%m-%d %H:%M")
         self.t0=time()
-    
+    def __repr__(self):
+        return f"{self.t0_datetime} ({self.t0})"
     def __str__(self):
         return self.t0_datetime
-
     def end(self):
         t0=self.t0
         t1=time()
