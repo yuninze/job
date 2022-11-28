@@ -13,6 +13,10 @@
  - Python Official Documentation
  - Pandas User Guide
  - Numpy User Guide
+ - Requests Quick Start
+ - Gspread Quick Start
+ - PIL, OpenCV2 Tutorial
+ 
 
 # 라이센스
  - 스크립트는 모두 wrapper이므로 아무렇게나 써도 되요
