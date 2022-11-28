@@ -1,6 +1,6 @@
 # job
  - Python::Miniconda 기반한 잡 (job) 스크립트예요
- - 주로 os-level IO나 JSON/CSV 관련 조작이 많아요
+ - 주로 OS-level IO나 JSON/CSV 관련 조작이 많아요
 
 # 설명
  - 일할 때나 심심할 때 작성한 잡 (job) 스크립트로 메모장의 역할을 겸해요
