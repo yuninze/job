@@ -1,6 +1,5 @@
 from time import time
 from datetime import datetime
-from random import random
 
 class t:
     def __init__(self):
@@ -9,9 +8,8 @@ class t:
     def __repr__(self):
         return f"{self.t0_datetime} ({self.t0})"
     def __str__(self):
-        return self.t0_datetime
+        return self.t0_datetime,self.t0
     def end(self):
         t0=self.t0
         t1=time()
         return round((t1-t0)/60,1)
-
