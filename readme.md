@@ -15,7 +15,7 @@
  - Numpy User Guide
  - Requests Quick Start
  - Gspread Quick Start
- - PIL, OpenCV2 Tutorial
+ - PIL, OpenCV2 Official Tutorial
  
 
 # 라이센스
