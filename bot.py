@@ -8,12 +8,17 @@ intents=discord.Intents.default()
 intents.message_content=True
 client=discord.Client(intents=intents)
 
+calcs=[]
 brand=["맥","켚엪씌","노","벅어킹","썹"]
 brands=[]
 users=[]
 
 @client.event
 async def on_message(message):
+    if message.author=="savethespecies#6225":
+        if message.content.startswith("패푸"):
+            calcs.append(int(message.content.strip().replace("패푸","")))
+            await message.channel.send(f"{sum(calcs)}")
     if message.content=="/햄":
         if not len(users)==3:
             if not message.author in users:
