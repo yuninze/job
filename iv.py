@@ -14,3 +14,4 @@ class t:
         t0=self.t0
         t1=time()
         return round((t1-t0)/60,1)
+    
