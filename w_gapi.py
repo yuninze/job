@@ -12,9 +12,7 @@ pat="c:/code"
 cred=f"{pat}/gapi_oauth_cert.json"
 cred_username=f"{pat}/gapi_ouath_cert_user.json"
 proj_id="918911903550"
-SCOPES=[
-    "https://www.googleapis.com/auth/cloud-platform",
-    "https://www.googleapis.com/auth/drive",]
+SCOPES=["https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/drive",]
 
 def gs():
     if exists(f"{pat}/docid.txt"):
